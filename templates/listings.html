@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="flex justify-between items-center mb-6">
+  <h1 class="text-3xl font-bold">Available Properties</h1>
+  <a href="/add-listing/" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded">
+    + Add New Property
+  </a>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+  {% for listing in listings %}
+  <div class="bg-white rounded-lg shadow-md overflow-hidden">
+    <!-- Image -->
+    <img src="{{ listing.image.url }}" alt="{{ listing.title }}" class="w-full h-64 object-cover">
+
+    <!-- Details -->
+    <div class="p-6">
+      <h2 class="text-2xl font-semibold mb-2">{{ listing.title }}</h2>
+      <p class="text-gray-600 mb-2"><strong>Location:</strong> {{ listing.location }}</p>
+      <p class="text-gray-600 mb-2"><strong>Price:</strong> ₹ {{ listing.price }}</p>
+      <p class="text-gray-600 mb-4 truncate"><strong>Description:</strong> {{ listing.description|truncatechars:100 }}</p>
+
+      <!-- Actions -->
+      <div class="flex space-x-4 mt-4">
+        <a href="/listings/{{ listing.id }}/" class="text-white bg-green-500 hover:bg-green-600 py-2 px-4 rounded">View</a>
+        <a href="/listings/{{ listing.id }}/edit" class="text-white bg-yellow-500 hover:bg-yellow-600 py-2 px-4 rounded">Edit</a>
+        <a href="/listings/{{ listing.id }}/delete" class="text-white bg-red-500 hover:bg-red-600 py-2 px-4 rounded">Delete</a>
+      </div>
+    </div>
+  </div>
+  {% empty %}
+    <p>No properties available at the moment.</p>
+  {% endfor %}
+</div>
+
+{% endblock content %}

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% block title %}Real Estate{% endblock %}</title>
+  <!-- Tailwind CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    .hero {
+      background-image: url('/media/marin_day.jpeg'); /* your background image */
+      background-size: cover;
+      background-position: center;
+      height: 400px;
+    }
+    .place-card {
+      background-size: cover;
+      background-position: center;
+      height: 250px;
+      border-radius: 10px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: bold;
+      font-size: 1.5rem;
+      text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
+    }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+  <!-- Navbar -->
+  <header class="bg-white shadow p-4 mb-6">
+    <nav class="container mx-auto flex justify-between items-center">
+      <div class="space-x-4">
+        <a href="{% url 'home' %}" class="font-bold text-lg">Home</a>
+        
+        <!-- Listings visible to everyone -->
+        <a href="{% url 'listing_list' %}" class="text-gray-700">Listings</a>
+        
+      </div>
+      <div class="space-x-4">
+        {% if user.is_authenticated %}
+          <a href="{% url 'listing_create' %}" class="text-green-500 font-semibold">Add Listing</a>
+          <a href="{% url 'logout' %}" class="text-red-500 font-semibold">Logout</a>
+        {% else %}
+          <a href="{% url 'login' %}" class="text-blue-500 font-semibold">Login</a>
+          <a href="{% url 'register' %}" class="text-green-500 font-semibold">Register</a>
+        {% endif %}
+      </div>
+    </nav>
+  </header>
+
+  <!-- Hero Background Section -->
+  <section class="hero flex items-center justify-center text-white text-4xl font-bold">
+    Welcome to Mumbai Real Estate
+  </section>
+
+  <!-- Main Content -->
+  <main class="container mx-auto px-4 mt-8">
+    {% block content %}{% endblock %}
+  </main>
+
+  <!-- About Real Estate Section -->
+  <section class="container mx-auto px-4 mt-12">
+    <h2 class="text-3xl font-bold mb-6 text-center">Explore Real Estate in Mumbai</h2>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      <!-- South Mumbai Card -->
+      <div class="place-card" style="background-image: url('/media/mumbai_buildings.jpg');">
+        South Mumbai
+      </div>
+
+      <!-- Western Suburbs Card -->
+      <div class="place-card" style="background-image: url('/media/interior.png');">
+        Western Suburbs
+      </div>
+
+      <!-- Navi Mumbai & Thane Card -->
+      <div class="place-card" style="background-image: url('/media/inside-of-an-US-apartment-1024x579.jpg');">
+        Navi Mumbai & Thane
+      </div>
+    </div>
+
+    <p class="text-gray-700 mt-8 text-center">
+      Mumbai offers a vibrant real estate market from luxury apartments in South Mumbai to affordable homes in Navi Mumbai.
+    </p>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="container mx-auto px-4 mt-16 mb-12">
+    <h2 class="text-3xl font-bold mb-6 text-center">Contact Us</h2>
+    <div class="bg-white p-8 rounded shadow text-center">
+      <p class="text-2xl font-semibold mb-2">Suraj Ghaytidak</p>
+      <p class="text-gray-700 mb-2">Email: <a href="mailto:suraj.ghaytidak@gmail.com" class="text-blue-500 underline">suraj.ghaytidak@gmail.com</a></p>
+      <p class="text-gray-700 mb-2">Phone: <a href="tel:+918624097909" class="text-blue-500 underline">+91-8624097909</a></p>
+      <p class="text-gray-700 mt-4">We are here to help you find your dream home in Mumbai!</p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-4 bg-white shadow text-center text-sm">
+    &copy; {{ year }} Real Estate Co. | Designed by Suraj Ghaytidak
+  </footer>
+
+</body>
+</html>

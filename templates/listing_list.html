@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}Listing List{% endblock %}
+
+{% block content %}
+  <h1 class="text-3xl font-bold mb-6 text-center">All Listings</h1>
+  <div class="grid md:grid-cols-3 gap-8">
+    {% for listing in listings %}
+      <div class="place-card" style="background-image: url('{{ listing.image.url }}');">
+        <div class="text-center bg-opacity-50 bg-black p-4">
+          <h3 class="text-xl">{{ listing.title }}</h3>
+          <p>{{ listing.price }} INR</p>
+          <p>{{ listing.address }}</p>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}
