@@ -40,11 +40,11 @@ Others: Django Authentication, Django Admin Panel, Docker
 
 Suraj Ghaytidak
 
-📧 suraj.ghaytidak@gmail.com
+📧 ghaytidaksuraj007@gmail.com
 
 📱 +91-8624097909
 
-🌐 GitHub Profile
+🌐 https://github.com/suraj-sg-007
 
 🎉 Thank you for visiting the project! Happy Coding! 🎯
 
